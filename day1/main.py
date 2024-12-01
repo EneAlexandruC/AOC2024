@@ -1,46 +1,39 @@
 from collections import defaultdict
 
 # Part 1
-# input = open("day1/input.txt", "r")
+with open("day1/input.txt", "r") as input:
 
-# leftID = []
-# rightID = []
-# diff = 0
+    leftID, rightID = [], []
+    diff = 0
 
-# for line in input:
-#     numbers = line.split()
-#     leftID.append(int(numbers[0]))
-#     rightID.append(int(numbers[1]))
+    for line in input:
+        numbers = line.split()
+        leftID.append(int(numbers[0]))
+        rightID.append(int(numbers[1]))
 
-# leftID.sort()
-# rightID.sort()
+    leftID.sort()
+    rightID.sort()
 
-# for i in range(len(leftID)):
-#     if leftID[i] - rightID[i] < 0:
-#         diff += rightID[i] - leftID[i]
-#     else:
-#         diff += leftID[i] - rightID[i]
-    
-# print(diff)
+    for i in range(len(leftID)):
+        diff += abs(rightID[i] - leftID[i])
+        
+    print(diff)
 
-# input.close()
 
 # Part 2
 
-input = open("day1/input.txt", "r")
+with open("day1/input.txt", "r") as input:
 
-IDs = []
-scores = defaultdict(int)
-score = 0
+    IDs = []
+    scores = defaultdict(int)
+    score = 0
 
-for line in input:
-    numbers = line.split()
-    IDs.append(int(numbers[0]))
+    for line in input:
+        numbers = line.split()
+        IDs.append(int(numbers[0]))
+        scores[int(numbers[1])] += 1
 
-    scores[int(numbers[1])] += 1
+    for ID in IDs:
+        score += ID * scores[ID]
 
-for ID in IDs:
-    score += ID * scores[ID]
-
-print(score)
-input.close()
+    print(score)
